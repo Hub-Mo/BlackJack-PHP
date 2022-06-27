@@ -1,10 +1,13 @@
 <?php
 declare(strict_types=1);
 session_start();
-require 'include/autoLoader.inc.php';
+require 'include/AutoLoader.inc.php';
 
 
 $_SESSION['blackJack'] = new Blackjack();
+$player = new Player();
+if(isset($_POST['hit'])){
+}
 ?>
 
 <!doctype html>
@@ -17,11 +20,15 @@ $_SESSION['blackJack'] = new Blackjack();
     <title>Document</title>
 </head>
 <body>
-<form method="post" action="index.php">
-    <button name="hit" type="submit">hit</button>
-    <button name="stand" type="submit">stand</button>
-    <button name="surrender" type="submit">surrender</button
-</form>
+
+
+    <form method="post" action="index.php">
+        <button name="hit" type="submit">hit</button>
+        <button name="stand" type="submit">stand</button>
+        <button name="surrender" type="submit">surrender</button
+    </form>
+
+
 </body>
 </html>
 

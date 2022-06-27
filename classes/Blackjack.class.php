@@ -15,7 +15,7 @@ class Blackjack{
         $deck->shuffle();
         $this->deck = $deck;
         $this->player = new Player($deck);
-        $this->dealer = new Player($deck);
+        $this->dealer = new Dealer($deck);
     }
 
     public function getPlayer(){
