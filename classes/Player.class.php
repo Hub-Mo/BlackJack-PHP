@@ -26,7 +26,7 @@ class Player {
     public function getScore() {
         $score = 0;
         foreach($this->cards as $card){
-            $score += $card;
+            $score += $card->getValue();
         }
         return $score;
     }

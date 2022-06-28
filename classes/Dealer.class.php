@@ -1,8 +1,8 @@
 <?php
 declare(strict_types=1);
 
-include 'classes/Player.class.php';
-class Dealer extends Player{
+include_once 'classes/Player.class.php';
+class Dealer extends Player {
 
 public function hit($deck)
 {
