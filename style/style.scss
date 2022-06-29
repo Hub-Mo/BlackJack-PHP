@@ -1,47 +1,60 @@
 * {
   box-sizing: border-box;
 }
+body{
+  background-color: beige;
+
 h1{
   text-align: center;
 }
+
 .playGround{
   margin:0 auto;  display: flex;
   justify-content: center;
-  border: 1px solid red;
   height: 60vh;
   width: 50vw;
   display: flex;
   flex-direction: column;
+  background: darkgreen;
+  border-radius: 50px;
     .winnerDisplay{
       text-align: center;
       height: 10vh;
       width: 50vw;
-      border: 1px solid green;
     }
     .playerContainer{
       display: flex;
 
         .dealerField {
-          border: 1px solid yellow;
           height: 40vh;
           width: 25vw;
           text-align: center;
+          p{
+            font-size: 2rem;
+          }
         }
         .playerField {
-          border: 1px solid purple;
           height: 40vh;
           width: 25vw;
           text-align: center;
+            p{
+              font-size: 2rem;
+            }
         }
     }
 }
 
+
 .center{
+  margin: 1rem;
   display: flex;
   justify-content: center;
   form>button{
     width: 10rem;
     height: 2.5rem;
     font-size: 1rem;
+    background: darkgreen;
+    border-radius: 10px;
   }
+}
 }

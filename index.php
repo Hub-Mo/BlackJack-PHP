@@ -1,45 +1,39 @@
 <?php
 declare(strict_types=1);
 session_start();
-require 'include/AutoLoader.inc.php';
-//require 'classes/Card.class.php';
-//require 'classes/Suit.class.php';
-//require 'classes/Deck.class.php';
-//require 'classes/Blackjack.class.php';
-//require 'classes/Player.class.php';
-//require 'classes/Dealer.class.php';
+require 'classes/Card.class.php';
+require 'classes/Suit.class.php';
+require 'classes/Deck.class.php';
+require 'classes/Blackjack.class.php';
+require 'classes/Player.class.php';
+require 'classes/Dealer.class.php';
 
+if (isset($_SESSION['blackJack'])) {
+    $_SESSION['blackJack'] = new Blackjack();
+    asignSessionValues();
+}
 
-
-
-
-$_SESSION['blackJack'] = new Blackjack();
-$blackJack = $_SESSION['blackJack'];
-
-$player = $blackJack->getPlayer();
-$dealer = $blackJack->getDealer();
-$deck = $blackJack->getDeck();
+function asignSessionValues(){
+    $_SESSION["playerHasLost"] = false;
+    $_SESSION["DealerHasLost"] = false;
+    $_SESSION['playerScore'] = $_SESSION['blackJack']->getPlayer()->getScore();
+    $_SESSION['DealerScore'] = $_SESSION['blackJack']->getDealer()->getScore();
+}
 
 if(isset($_POST['hit'])){
-    $player->hit($deck);
-    if($player->hasLost() == true){
-        echo "the player loses the game";
+    if(!$_SESSION['playerHasLost']){
+        $_SESSION['blackJack']->getPlayer()->hit($_SESSION['blackJack']->getDeck());
     }
 }
 if(isset($_POST['stand'])){
-    $dealer->hit($deck);
-    if($dealer->hasLost() == true){
-        echo "the player wins the game";
-    }
+    $_SESSION['blackJack']->getDealer()->hit($_SESSION['blackJack']->getDeck());
+    $_SESSION['DealerHasLost'] = $_SESSION['blackJack']->getDealer()->hasLost();
 }
+
 if(isset($_POST['surrender'])){
-    $player->hasLost();
-    echo "dealer wins";
+    $_SESSION['blackJack']->getPlayer()->surrender();
+    $_SESSION['playerScore'] = $_SESSION['blackJack']->getPlayer()->hasLost();
 }
-
-$_SESSION['$playerScore'] = $player->getScore();
-$_SESSION['$DealerScore'] = $dealer->getScore();
-
 
 
 ?>
@@ -61,13 +55,33 @@ $_SESSION['$DealerScore'] = $dealer->getScore();
     <div class="playerContainer test">
         <div class="playerField test">
             <h2>Player</h2>
-            <p>card:</p>
-            <p>points:  <?= $_SESSION['$playerScore'] ?></p>
+            <p style="font-size: 3rem">
+            <?php
+            foreach ($_SESSION['blackJack']->getPlayer()->getCards() as $card) {
+            echo $card->getUnicodeCharacter(true);
+            echo '&emsp;';}
+            ?>
+            </p>
+            <p>points:
+                <?php
+                    echo $_SESSION['playerScore'];
+                ?>
+            </p>
         </div>
         <div class="dealerField test">
             <h2>dealer</h2>
-            <p>cards:</p>
-            <p>points: <?= $_SESSION['$DealerScore'] ?></p>
+            <p  style="font-size: 3rem">
+                <?php
+                foreach ($_SESSION['blackJack']->getDealer()->getCards() as $card) {
+                    echo $card->getUnicodeCharacter(true);
+                    echo '&emsp;';}
+                ?>
+            </p>
+            <p>points:
+                <?php
+                    echo $_SESSION['DealerScore'];
+                ?>
+            </p>
         </div>
     </div>
 
@@ -75,9 +89,9 @@ $_SESSION['$DealerScore'] = $dealer->getScore();
 
 <div class="center">
     <form method="post" action="index.php">
-        <button name="hit" type="submit">hit</button>
-        <button name="stand" type="submit">stand</button>
-        <button name="surrender" type="submit">surrender</button
+        <button name="hit" value="hit" type="submit">hit</button>
+        <button name="stand" value="stand" type="submit">stand</button>
+        <button name="surrender" value="surrender" type="submit">surrender</button
     </form>
 </div>
 

@@ -2,50 +2,58 @@
   box-sizing: border-box;
 }
 
-h1 {
+body {
+  background-color: beige;
+}
+body h1 {
   text-align: center;
 }
-
-.playGround {
+body .playGround {
   margin: 0 auto;
   display: flex;
   justify-content: center;
-  border: 1px solid red;
   height: 60vh;
   width: 50vw;
   display: flex;
   flex-direction: column;
+  background: darkgreen;
+  border-radius: 50px;
 }
-.playGround .winnerDisplay {
+body .playGround .winnerDisplay {
   text-align: center;
   height: 10vh;
   width: 50vw;
-  border: 1px solid green;
 }
-.playGround .playerContainer {
+body .playGround .playerContainer {
   display: flex;
 }
-.playGround .playerContainer .dealerField {
-  border: 1px solid yellow;
+body .playGround .playerContainer .dealerField {
   height: 40vh;
   width: 25vw;
   text-align: center;
 }
-.playGround .playerContainer .playerField {
-  border: 1px solid purple;
+body .playGround .playerContainer .dealerField p {
+  font-size: 2rem;
+}
+body .playGround .playerContainer .playerField {
   height: 40vh;
   width: 25vw;
   text-align: center;
 }
-
-.center {
+body .playGround .playerContainer .playerField p {
+  font-size: 2rem;
+}
+body .center {
+  margin: 1rem;
   display: flex;
   justify-content: center;
 }
-.center form > button {
+body .center form > button {
   width: 10rem;
   height: 2.5rem;
   font-size: 1rem;
+  background: darkgreen;
+  border-radius: 10px;
 }
 
 /*# sourceMappingURL=style.css.map */
