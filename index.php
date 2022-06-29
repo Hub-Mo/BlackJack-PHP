@@ -55,7 +55,7 @@ if(isset($_POST['surrender'])){
     <div class="playerContainer test">
         <div class="playerField test">
             <h2>Player</h2>
-            <p style="font-size: 3rem">
+            <p style="font-size: 6rem">
             <?php
             foreach ($_SESSION['blackJack']->getPlayer()->getCards() as $card) {
             echo $card->getUnicodeCharacter(true);
@@ -70,7 +70,7 @@ if(isset($_POST['surrender'])){
         </div>
         <div class="dealerField test">
             <h2>dealer</h2>
-            <p  style="font-size: 3rem">
+            <p  style="font-size: 6rem">
                 <?php
                 foreach ($_SESSION['blackJack']->getDealer()->getCards() as $card) {
                     echo $card->getUnicodeCharacter(true);
